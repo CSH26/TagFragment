@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">알파고에게 물어봐</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">탐색하기</string>
+</resources>

@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tj.tagfragment.TagFragment">
+
+
+    <LinearLayout
+        android:id="@+id/cloudLayout"
+        android:background="#f99293"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="280dp">
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/basketLayout"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="300dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+    </LinearLayout>
+
+</FrameLayout>

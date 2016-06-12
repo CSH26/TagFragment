@@ -1,5 +1,7 @@
 package com.example.tj.tagfragment;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,20 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TagFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TagFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TagFragment extends Fragment {
-
+    LinearLayout cloudLayout;
     LinearLayout basketLayout;
+    private static final int CLOUD_SIZE = 8;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,15 +31,6 @@ public class TagFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TagFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static TagFragment newInstance(String param1, String param2) {
         TagFragment fragment = new TagFragment();
         Bundle args = new Bundle();
@@ -76,12 +60,32 @@ public class TagFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tag, container, false);
 
-        TextView textView = new TextView(view.getContext());
-        textView.setText("안녕");
+        Drawable normalShape = getResources().getDrawable(
+                R.drawable.normal_shape);
+        Drawable targetShape = getResources().getDrawable(
+                R.drawable.target_shape);
+
+        View view = inflater.inflate(R.layout.fragment_tag, container, false);
+        Resources resources = getResources();
+        cloudLayout  = (LinearLayout)view.findViewById(R.id.cloudLayout);
+        cloudLayout.setOnDragListener(new DragListener(view.getContext(),normalShape, targetShape));
         basketLayout = (LinearLayout)view.findViewById(R.id.basketLayout);
-        basketLayout.addView(textView);
+        basketLayout.setOnDragListener(new DragListener(view.getContext(),normalShape, targetShape));
+
+        String[] text = new String[CLOUD_SIZE];
+        Tag[] tag = new Tag[CLOUD_SIZE];
+        Floater floater = new Floater(view.getContext());
+
+        for(int i = 0;i<CLOUD_SIZE;i++){
+            text[i]="TAG"+i;
+            tag[i] = new Tag(view.getContext(),text[i]);
+            tag[i].setOnTouchListener(new TouchListener());
+            if(CLOUD_SIZE < 4)
+                floater.tagDraw(cloudLayout, tag[i]);
+            else
+                floater.changeDraw(cloudLayout,tag[i]);
+        }
 
         return view;
     }

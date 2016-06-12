@@ -6,18 +6,19 @@
 
 
     <LinearLayout
-        android:id="@+id/cloudLayout"
-        android:background="#f99293"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/normal_shape"
+        android:id="@+id/cloudLayout"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="280dp">
+        android:layout_height="289dp">
     </LinearLayout>
 
-
     <LinearLayout
+        android:gravity="center"
+        android:background="@drawable/normal_shape"
         android:id="@+id/basketLayout"
-        android:background="@color/colorAccent"
         android:layout_marginTop="300dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"

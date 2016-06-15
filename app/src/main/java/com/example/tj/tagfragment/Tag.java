@@ -15,6 +15,7 @@ public class Tag extends TextView {
     private Resources resources;
     private Context context;
 
+    // 텍스트 뷰를 상속받아 백그라운드와 텍스트 컬러, 정렬등을 자동으로 생성
     public Tag(Context context, String text) {
         super(context);
         this.context = context;

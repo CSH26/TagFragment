@@ -23,12 +23,11 @@ public class Floater {
 
     public void tagDraw(LinearLayout layout, Tag tag){
         layout.addView(tag);
-
     }
 
     public void changeDraw(LinearLayout layout, Tag tag){
         if(size==0) {
-            layoutDynamicAddView(layout);
+            layoutDynamicAddView(layout);           //레이아웃을 셋팅하고 필드에 반환된 레이아웃을 메인레이아웃에 추가
             layout.addView(horizontalLayout1);
             layout.addView(horizontalLayout2);
         }
@@ -41,6 +40,7 @@ public class Floater {
 
     }
 
+    // 태그 메시지가 특정개수 이상되면 해당페이지에 동적으로 레이아웃 추가
     public void layoutDynamicAddView(LinearLayout layout){
         LinearLayout horizontalLayout1 = new LinearLayout(context);
         LinearLayout horizontalLayout2 = new LinearLayout(context);
@@ -55,6 +55,7 @@ public class Floater {
         horizontalLayout2.setLayoutParams(layoutParams2);
         horizontalLayout2.setGravity(Gravity.CENTER);
 
+        //필드 레이아웃에 추가.
         this.horizontalLayout1 = horizontalLayout1;
         this.horizontalLayout2 = horizontalLayout2;
 

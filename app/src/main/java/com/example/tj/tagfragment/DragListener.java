@@ -24,12 +24,6 @@ public class DragListener implements View.OnDragListener {
         this.targetShape = targetShape;
     }
 
-    /*
-    Drawable normalShape = resources.getDrawable(
-            R.drawable.normal_shape);
-    Drawable targetShape = resources.getDrawable(
-            R.drawable.target_shape);
-*/
     public boolean onDrag(View v, DragEvent event) {
 
         // 이벤트 시작
@@ -57,25 +51,26 @@ public class DragListener implements View.OnDragListener {
             case DragEvent.ACTION_DROP:
                 Log.d("DragClickListener", "ACTION_DROP");
 
-                if (v == v.findViewById(R.id.basketLayout)) {
+                if (v == v.findViewById(R.id.basketLayout)) {  // 장바구니 레이아웃에 아이템이 드랍되면
                     View view = (View) event.getLocalState();
                     ViewGroup viewgroup = (ViewGroup) view
                             .getParent();
                     viewgroup.removeView(view);
-
-
+                    // cloud 레이아웃에서 기존 뷰 제거
                     Toast.makeText(context, "추가 되었습니다.",Toast.LENGTH_SHORT).show();
 
+                    // basket 레이아웃에 뷰 추가
                     LinearLayout containView = (LinearLayout) v;
                     containView.addView(view);
                     view.setVisibility(View.VISIBLE);
 
-                }else if (v == v.findViewById(R.id.cloudLayout)) {
+                }else if (v == v.findViewById(R.id.cloudLayout)) { // 기존 레이아웃에 드랍되면
                     View view = (View) event.getLocalState();
                     ViewGroup viewgroup = (ViewGroup) view
                             .getParent();
-                    viewgroup.removeView(view);
+                    viewgroup.removeView(view);  // basket레이아웃에서 뷰를 제거하고
 
+                    // cloud레이아웃에 뷰 추가
                     LinearLayout containView = (LinearLayout) v;
                     containView.addView(view);
                     view.setVisibility(View.VISIBLE);

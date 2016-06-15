@@ -61,30 +61,36 @@ public class TagFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        // 이미지 드랍이 안된 부분 주황색 배경
         Drawable normalShape = getResources().getDrawable(
                 R.drawable.normal_shape);
+        // 이미지 드랍이 안된 부분 초록색 배경
         Drawable targetShape = getResources().getDrawable(
                 R.drawable.target_shape);
 
         View view = inflater.inflate(R.layout.fragment_tag, container, false);
         Resources resources = getResources();
+
+        //기본 메시지를 띄워줄 레이아웃
         cloudLayout  = (LinearLayout)view.findViewById(R.id.cloudLayout);
         cloudLayout.setOnDragListener(new DragListener(view.getContext(),normalShape, targetShape));
+        //끌어온 메시지를 담을 레이아웃
         basketLayout = (LinearLayout)view.findViewById(R.id.basketLayout);
         basketLayout.setOnDragListener(new DragListener(view.getContext(),normalShape, targetShape));
 
-        String[] text = new String[CLOUD_SIZE];
-        Tag[] tag = new Tag[CLOUD_SIZE];
-        Floater floater = new Floater(view.getContext());
+        String[] text = new String[CLOUD_SIZE]; // 띄울 텍스트 만들기
+        Tag[] tag = new Tag[CLOUD_SIZE];    // 구름모양 이미지 배열 추가.
+        Floater floater = new Floater(view.getContext());      // 이미지를 띄워주는 작업을 하는 클래스
 
+        // 스트링 배열에 Tag1, Tag2.... 이름 붙여넣기
         for(int i = 0;i<CLOUD_SIZE;i++){
             text[i]="TAG"+i;
             tag[i] = new Tag(view.getContext(),text[i]);
-            tag[i].setOnTouchListener(new TouchListener());
+            tag[i].setOnTouchListener(new TouchListener());  // 각 태그에 터치리스너 등록
             if(CLOUD_SIZE < 4)
-                floater.tagDraw(cloudLayout, tag[i]);
+                floater.tagDraw(cloudLayout, tag[i]);       // 플로터 클래스에 레이아웃과 메시지를 넘겨줌
             else
-                floater.changeDraw(cloudLayout,tag[i]);
+                floater.changeDraw(cloudLayout,tag[i]);     // 개수가 많아지면 다음행에 메시지 띄우기
         }
 
         return view;
